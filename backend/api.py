@@ -35,6 +35,10 @@ try:
 except Exception as e:
     print(f"Warning: Models not loaded. Please ensure Phase 2 completed. Error: {e}")
 
+@app.route('/', methods=['GET'])
+def health_check():
+    return jsonify({"status": "AI Career Platform API is running successfully!"}), 200
+
 # --- ML ENDPOINTS ---
 
 @app.route('/predict_career', methods=['POST'])
