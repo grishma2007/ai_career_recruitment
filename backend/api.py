@@ -6,7 +6,7 @@ import pandas as pd
 import sqlite3
 
 import sys
-sys.path.append(os.path.dirname(__file__))
+sys.path.insert(0, os.path.dirname(__file__))
 
 # Import our custom modules
 from database import get_db_connection, init_db, seed_db
