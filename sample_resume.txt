@@ -1,0 +1,4 @@
+Alice Smith
+Data Scientist & Web Developer
+Experience with Python, React, Pandas, SQL, and AWS.
+Looking for a great opportunity in Machine Learning.
