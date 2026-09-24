@@ -89,10 +89,10 @@ def generate_career_record():
     record['Role'] = role
     return record
 
-career_data = [generate_career_record() for _ in range(10000)]
+career_data = [generate_career_record() for _ in range(1000)]
 df_career = pd.DataFrame(career_data)
 df_career.to_csv('data/career_data.csv', index=False)
-print("Generated career_data.csv with 10000 rows.")
+print("Generated career_data.csv with 1000 rows.")
 
 # 2. Generate Risk Data
 def generate_risk_record():

@@ -1,6 +1,7 @@
 import requests
+import os
 
-BASE_URL = "http://127.0.0.1:5000"
+BASE_URL = os.environ.get("API_URL", "http://127.0.0.1:5000").rstrip('/')
 
 def _post(endpoint, json_data):
     try:

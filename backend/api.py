@@ -6,7 +6,7 @@ import pandas as pd
 import sqlite3
 
 # Import our custom modules
-from database import get_db_connection
+from database import get_db_connection, init_db, seed_db
 from validators import validate_json
 from resume_parser import extract_skills_from_text
 from matching import match_student_to_job
@@ -14,6 +14,10 @@ from recommender import recommend_skills
 
 app = Flask(__name__)
 CORS(app)
+
+# Ensure database is initialized
+init_db()
+seed_db()
 
 # Load Models globally
 MODELS_DIR = os.path.join(os.path.dirname(__file__), '..', 'models')
