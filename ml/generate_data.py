@@ -8,44 +8,77 @@ os.makedirs('data', exist_ok=True)
 os.makedirs('models', exist_ok=True)
 
 # 1. Generate Career Data
-roles = ['Data Scientist', 'Web Developer', 'ML Engineer', 'Data Analyst', 'Backend Developer', 'Software Tester', 'Graphic Designer', 'Marketing Manager', 'HR Manager', 'Sales Executive']
-skills = ['Python', 'Java', 'SQL', 'React', 'AWS', 'Pandas', 'Node.js', 'Machine Learning', 'Selenium', 'Docker', 'Digital Marketing', 'SEO', 'Content Creation', 'Social Media Management', 'Market Research', 'Talent Acquisition', 'Employee Relations', 'HR Management', 'Project Management', 'Communication', 'Leadership', 'Adobe Photoshop', 'Illustrator', 'Figma', 'Sales', 'B2B']
+roles = [
+    'Data Scientist', 'Machine Learning Engineer', 'Data Analyst', 'AI Engineer', 
+    'Data Engineer', 'Software Developer', 'Full Stack Developer', 'Web Developer', 
+    'Backend Developer', 'QA / Software Tester', 'Cybersecurity Analyst', 
+    'Cloud / DevOps Engineer', 'Business Analyst', 'UI/UX Designer', 
+    'Graphic Designer', 'Digital Marketing Specialist', 'HR Manager', 
+    'Sales Executive', 'Product Associate', 'Content Creator',
+    'HR Executive', 'Recruiter', 'Business Development Executive', 
+    'Marketing Executive', 'Digital Marketing Executive', 'Customer Support Executive', 
+    'Operations Executive', 'Finance / Accounts Executive', 'Event Coordinator'
+]
+skills = [
+    'Python', 'SQL', 'Machine Learning', 'Statistics', 'Pandas', 'Data Visualization', 'Mathematics', 
+    'Deep Learning', 'TensorFlow', 'Git', 'Excel', 'Power BI', 'NLP', 'Computer Vision', 
+    'Database Management', 'ETL', 'Apache Spark', 'Cloud Computing', 'Java', 'C++', 'OOP', 
+    'Problem Solving', 'HTML', 'CSS', 'JavaScript', 'React', 'Node.js', 'Express.js', 'MongoDB', 
+    'REST API', 'Software Testing', 'Selenium', 'API Testing', 'Cybersecurity', 'Networking', 'Linux', 
+    'Ethical Hacking', 'Cryptography', 'AWS', 'Docker', 'Kubernetes', 'CI/CD', 'Business Analysis', 
+    'Communication', 'UI/UX Design', 'Figma', 'Adobe XD', 'Wireframing', 'Prototyping', 'User Research', 
+    'Graphic Design', 'Photoshop', 'Illustrator', 'Canva', 'Creativity', 'Digital Marketing', 'SEO', 
+    'Social Media Marketing', 'Google Analytics', 'Content Writing', 'Human Resources', 'Leadership', 
+    'Recruitment', 'Team Management', 'Sales', 'Negotiation', 'CRM', 'Customer Relationship', 
+    'Marketing', 'Product Management', 'Market Research', 'Data Analysis', 'Project Management', 
+    'Content Creation', 'Video Editing', 'HRMS', 'Documentation', 'Candidate Sourcing', 'Screening', 
+    'Interviewing', 'Lead Generation', 'Persuasion', 'Customer Handling', 'Campaign Planning', 'Branding', 
+    'Social Media', 'Active Listening', 'Customer Service', 'Coordination', 'Process Management', 
+    'Accounting', 'Tally/ERP', 'GST Basics', 'Financial Reporting', 'Event Planning', 'Budgeting', 'Time Management', 'Content Marketing'
+]
 
 def generate_career_record():
     role = random.choice(roles)
     record = {skill: 0 for skill in skills}
     
-    # Add strong signals for roles
-    if role == 'Data Scientist':
-        record['Python'] = 1; record['Pandas'] = 1; record['Machine Learning'] = random.choice([0, 1]); record['SQL'] = 1
-        cgpa = round(random.uniform(7.5, 10.0), 2)
-    elif role == 'Web Developer':
-        record['React'] = 1; record['Node.js'] = 1; record['AWS'] = random.choice([0, 1])
-        cgpa = round(random.uniform(6.5, 9.5), 2)
-    elif role == 'ML Engineer':
-        record['Python'] = 1; record['Machine Learning'] = 1; record['Docker'] = 1; record['AWS'] = random.choice([0, 1])
-        cgpa = round(random.uniform(8.0, 10.0), 2)
-    elif role == 'Data Analyst':
-        record['SQL'] = 1; record['Pandas'] = 1; record['Python'] = random.choice([0, 1])
-        cgpa = round(random.uniform(6.0, 9.0), 2)
-    elif role == 'Backend Developer':
-        record['Java'] = 1; record['SQL'] = 1; record['Docker'] = random.choice([0, 1])
-        cgpa = round(random.uniform(7.0, 9.5), 2)
-    elif role == 'Software Tester':
-        record['Selenium'] = 1; record['Python'] = random.choice([0, 1]); record['Java'] = random.choice([0, 1])
-        cgpa = round(random.uniform(6.0, 8.5), 2)
-    elif role == 'Graphic Designer':
-        record['Adobe Photoshop'] = 1; record['Illustrator'] = 1; record['Figma'] = random.choice([0, 1]); record['Content Creation'] = random.choice([0, 1])
-        cgpa = round(random.uniform(5.5, 9.0), 2)
-    elif role == 'Marketing Manager':
-        record['Digital Marketing'] = 1; record['SEO'] = 1; record['Social Media Management'] = random.choice([0, 1]); record['Communication'] = 1
-        cgpa = round(random.uniform(6.0, 9.0), 2)
-    elif role == 'HR Manager':
-        record['HR Management'] = 1; record['Talent Acquisition'] = 1; record['Employee Relations'] = random.choice([0, 1]); record['Communication'] = 1
-        cgpa = round(random.uniform(6.0, 9.5), 2)
-    elif role == 'Sales Executive':
-        record['Sales'] = 1; record['B2B'] = random.choice([0, 1]); record['Communication'] = 1; record['Leadership'] = random.choice([0, 1])
-        cgpa = round(random.uniform(5.5, 8.5), 2)
+    role_skills_map = {
+        'Data Scientist': ['Python', 'SQL', 'Machine Learning', 'Statistics', 'Pandas', 'Data Visualization', 'Mathematics'],
+        'Machine Learning Engineer': ['Python', 'Machine Learning', 'Deep Learning', 'TensorFlow', 'SQL', 'Git', 'Mathematics'],
+        'Data Analyst': ['SQL', 'Excel', 'Python', 'Pandas', 'Statistics', 'Data Visualization', 'Power BI'],
+        'AI Engineer': ['Python', 'Machine Learning', 'Deep Learning', 'TensorFlow', 'NLP', 'Computer Vision', 'Mathematics'],
+        'Data Engineer': ['Python', 'SQL', 'Database Management', 'ETL', 'Apache Spark', 'Cloud Computing', 'Git'],
+        'Software Developer': ['Python', 'Java', 'C++', 'SQL', 'OOP', 'Git', 'Problem Solving'],
+        'Full Stack Developer': ['HTML', 'CSS', 'JavaScript', 'React', 'Node.js', 'Express.js', 'MongoDB', 'Git'],
+        'Web Developer': ['HTML', 'CSS', 'JavaScript', 'React', 'Node.js', 'SQL', 'Git'],
+        'Backend Developer': ['Python', 'Java', 'Node.js', 'Express.js', 'SQL', 'MongoDB', 'REST API', 'Git'],
+        'QA / Software Tester': ['Software Testing', 'Selenium', 'SQL', 'Python', 'Java', 'API Testing', 'Git'],
+        'Cybersecurity Analyst': ['Cybersecurity', 'Networking', 'Linux', 'Ethical Hacking', 'Python', 'Cryptography', 'Problem Solving'],
+        'Cloud / DevOps Engineer': ['Cloud Computing', 'AWS', 'Docker', 'Kubernetes', 'Linux', 'Git', 'CI/CD'],
+        'Business Analyst': ['Excel', 'SQL', 'Data Visualization', 'Business Analysis', 'Communication', 'Problem Solving', 'Power BI'],
+        'UI/UX Designer': ['UI/UX Design', 'Figma', 'Adobe XD', 'Wireframing', 'Prototyping', 'User Research', 'Communication'],
+        'Graphic Designer': ['Graphic Design', 'Photoshop', 'Illustrator', 'Canva', 'Figma', 'Creativity', 'Communication'],
+        'Digital Marketing Specialist': ['Digital Marketing', 'SEO', 'Social Media Marketing', 'Google Analytics', 'Content Writing', 'Communication', 'Canva'],
+        'HR Manager': ['Human Resources', 'Communication', 'Leadership', 'Recruitment', 'Team Management', 'Excel', 'Problem Solving'],
+        'Sales Executive': ['Sales', 'Communication', 'Negotiation', 'CRM', 'Customer Relationship', 'Marketing', 'Leadership'],
+        'Product Associate': ['Product Management', 'Communication', 'Market Research', 'Data Analysis', 'Project Management', 'Problem Solving', 'Leadership'],
+        'Content Creator': ['Content Creation', 'Content Writing', 'Social Media Marketing', 'Video Editing', 'Canva', 'Creativity', 'Communication'],
+        'HR Executive': ['Communication', 'Recruitment', 'Excel', 'HRMS', 'Documentation'],
+        'Recruiter': ['Communication', 'Candidate Sourcing', 'Screening', 'Interviewing', 'Negotiation'],
+        'Business Development Executive': ['Communication', 'Sales', 'Lead Generation', 'Negotiation', 'CRM'],
+        'Marketing Executive': ['Market Research', 'Communication', 'Campaign Planning', 'Branding', 'Excel'],
+        'Digital Marketing Executive': ['SEO', 'Social Media', 'Content Marketing', 'Google Analytics', 'Communication'],
+        'Customer Support Executive': ['Communication', 'Active Listening', 'Problem Solving', 'CRM', 'Customer Service'],
+        'Operations Executive': ['Excel', 'Coordination', 'Process Management', 'Documentation', 'Problem Solving'],
+        'Finance / Accounts Executive': ['Accounting', 'Excel', 'Tally/ERP', 'GST Basics', 'Financial Reporting'],
+        'Event Coordinator': ['Event Planning', 'Communication', 'Coordination', 'Budgeting', 'Time Management']
+    }
+    
+    primary_skills = role_skills_map.get(role, [])
+    for skill in primary_skills:
+        if random.random() < 0.8:
+            record[skill] = 1
+
+    cgpa = round(random.uniform(5.5, 10.0), 2)
 
     # Random noise
     for s in skills:
@@ -56,10 +89,10 @@ def generate_career_record():
     record['Role'] = role
     return record
 
-career_data = [generate_career_record() for _ in range(1000)]
+career_data = [generate_career_record() for _ in range(10000)]
 df_career = pd.DataFrame(career_data)
 df_career.to_csv('data/career_data.csv', index=False)
-print("Generated career_data.csv with 1000 rows.")
+print("Generated career_data.csv with 10000 rows.")
 
 # 2. Generate Risk Data
 def generate_risk_record():
@@ -99,7 +132,7 @@ print("Generated risk_data.csv with 600 rows.")
 
 # 3. Generate Skill Transactions (for Association Rules)
 transactions = []
-master_skills = ['Python', 'Java', 'SQL', 'React', 'AWS', 'Pandas', 'Node.js', 'Machine Learning', 'Docker', 'HTML', 'CSS', 'Git', 'MongoDB']
+master_skills = skills
 
 for _ in range(600):
     num_skills = random.randint(2, 6)

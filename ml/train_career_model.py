@@ -26,6 +26,8 @@ rf.fit(X_train, y_train)
 print("Training Gradient Boosting...")
 gb.fit(X_train, y_train)
 
+
+
 print("Training Voting Ensemble...")
 voting = VotingClassifier(estimators=[('rf', rf), ('gb', gb)], voting='soft')
 voting.fit(X_train, y_train)

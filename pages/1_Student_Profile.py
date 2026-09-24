@@ -47,8 +47,21 @@ st.write("### Enter your basic details and current skills")
 name = st.text_input("Full Name", value=st.session_state.get('name', ''))
 email = st.text_input("Email Address", value=st.session_state.get('email', ''))
 
-branch_options = ["Computer Science", "IT", "Electronics", "Mechanical", "Commerce", "Arts", "BBA", "Other"]
-saved_branch = st.session_state.get('branch', 'Computer Science')
+branch_options = [
+    "Computer Science / Computer Applications",
+    "Artificial Intelligence / Machine Learning",
+    "Information Technology",
+    "Data Science / Data Analytics",
+    "Computer Engineering",
+    "Electronics / Electronics & Communication",
+    "Business Administration / Management",
+    "Commerce / Accounting",
+    "Marketing / Digital Marketing",
+    "Design / Fine Arts / Multimedia",
+    "Humanities / Arts",
+    "Other"
+]
+saved_branch = st.session_state.get('branch', 'Computer Science / Computer Applications')
 
 if saved_branch in branch_options:
     branch_index = branch_options.index(saved_branch)

@@ -204,6 +204,20 @@ def create_job():
     conn.close()
     return jsonify({"job_id": job_id, "message": "Created successfully"}), 201
 
+@app.route('/jobs/<int:job_id>', methods=['DELETE'])
+def delete_job(job_id):
+    conn = get_db_connection()
+    # Delete related applications first
+    conn.execute("DELETE FROM applications WHERE job_id=?", (job_id,))
+    # Delete the job
+    cursor = conn.execute("DELETE FROM jobs WHERE job_id=?", (job_id,))
+    conn.commit()
+    conn.close()
+    
+    if cursor.rowcount == 0:
+        return jsonify({"error": "Job not found"}), 404
+    return jsonify({"message": "Job deleted successfully"}), 200
+
 @app.route('/applications', methods=['POST'])
 def apply_job():
     data = request.json

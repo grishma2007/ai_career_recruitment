@@ -28,7 +28,16 @@ st.header("Manage Candidates")
 if jobs:
     for j in jobs:
         with st.expander(f"Job: {j['title']} (ID: {j['job_id']})"):
-            st.write(f"**Skills Required:** {j['required_skills']}")
+            j_col1, j_col2 = st.columns([4, 1])
+            j_col1.write(f"**Skills Required:** {j['required_skills']}")
+            if j_col2.button("Delete Job", key=f"delete_job_{j['job_id']}"):
+                res = api.delete_job(j['job_id'])
+                if "error" in res:
+                    st.error(res["error"])
+                else:
+                    st.success("Job deleted!")
+                    st.rerun()
+
             candidates = api.rank_candidates(j['job_id'])
             if not candidates or (isinstance(candidates, dict) and "error" in candidates):
                 st.write("No applicants yet.")

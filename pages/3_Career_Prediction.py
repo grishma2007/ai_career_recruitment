@@ -32,8 +32,9 @@ if st.button("Predict Ideal Career Role"):
             
             # Show a dummy confidence chart to simulate probability output
             st.write("#### Confidence Profile")
+            sample_roles = [role] + [r for r in ["Data Scientist", "Software Developer", "UI/UX Designer", "HR Manager", "Data Analyst", "Machine Learning Engineer"] if r != role][:4]
             dummy_data = pd.DataFrame({
-                "Role": ["Data Scientist", "Graphic Designer", "Marketing Manager", "HR Manager", "Web Developer", "Sales Executive"],
-                "Confidence": [85 if r == role else 15 - (len(r) % 10) for r in ["Data Scientist", "Graphic Designer", "Marketing Manager", "HR Manager", "Web Developer", "Sales Executive"]]
+                "Role": sample_roles,
+                "Confidence": [85 if r == role else max(0, 15 - (len(r) % 10)) for r in sample_roles]
             })
             st.bar_chart(dummy_data.set_index("Role"))
