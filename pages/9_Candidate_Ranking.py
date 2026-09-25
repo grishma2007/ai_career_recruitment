@@ -31,6 +31,8 @@ selected_job_label = st.selectbox("Select Job Listing", list(job_options.keys())
 if selected_job_label:
     job_id = job_options[selected_job_label]
     
+    st.button("Refresh Candidates")
+    
     with st.spinner("Fetching applicants..."):
         candidates = api.rank_candidates(job_id)
         

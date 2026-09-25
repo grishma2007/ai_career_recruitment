@@ -48,7 +48,7 @@ if jobs:
                     c_col1.write(f"**{c['name']}** - Match: {c['match_score']}% - CGPA: {c['cgpa']}")
                     
                     # Dummy state management for buttons
-                    key = f"status_{j['job_id']}_{c['email']}_{idx}"
+                    key = f"status_{j['job_id']}_{c['email']}"
                     if key not in st.session_state:
                         st.session_state[key] = c['status']
                     

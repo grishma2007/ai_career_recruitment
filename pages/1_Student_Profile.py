@@ -102,15 +102,17 @@ if "Other" in selected_skills:
 
 submitted = st.button("Save Profile")
 if submitted:
-    if name and email:
+    name_clean = name.strip() if name else ""
+    email_clean = email.strip() if email else ""
+    if name_clean and email_clean:
         # Combine standard skills with custom skills
         final_skills = [s for s in selected_skills if s != "Other"]
         if custom_skills:
             final_skills.extend([s.strip() for s in custom_skills.split(",") if s.strip()])
             
         # Save to session
-        st.session_state['name'] = name
-        st.session_state['email'] = email
+        st.session_state['name'] = name_clean
+        st.session_state['email'] = email_clean
         st.session_state['branch'] = branch
         st.session_state['year'] = year
         st.session_state['attendance'] = attendance
@@ -120,7 +122,7 @@ if submitted:
         
         # Save to backend
         data = {
-            "name": name, "email": email, "branch": branch, 
+            "name": name_clean, "email": email_clean, "branch": branch, 
             "cgpa": cgpa, "attendance": attendance, 
             "year": year, "career_goal": career_goal,
             "skills": final_skills

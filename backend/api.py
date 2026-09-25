@@ -252,7 +252,7 @@ def apply_job():
 def rank_candidates(job_id):
     conn = get_db_connection()
     query = '''
-        SELECT students.name, students.email, students.cgpa, applications.match_score, applications.status
+        SELECT students.name AS name, students.email AS email, students.cgpa AS cgpa, applications.match_score AS match_score, applications.status AS status
         FROM applications
         JOIN students ON applications.student_id = students.student_id
         WHERE applications.job_id = ?
